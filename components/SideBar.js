@@ -10,7 +10,7 @@ import {
 export const SideBar = ({children, name}) => {
     return (
         <>
-            <Box>   
+            <Box bgColor={'blue.200'} p={2} height={'100%'}>   
                 <Text fontSize={'xl'} textAlign={'center'}>{name}</Text>
                 <Divider my={2}/>
                 <VStack alignItems={'start'}>
