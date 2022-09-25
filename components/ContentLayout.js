@@ -11,7 +11,7 @@ Componente donde va todo el layout de cada tab
 export default function ContentLayout({ children }) {
   return (
    <>
-    <Box bgColor={'gray.200'} height={'100%'} width={'100%'} padding={4}>
+    <Box bgColor={'black'} height={'100%'} width={'100%'} padding={1}>
     {/** TODO: orgnizar para que se vaya a un lado con el grid */}
     {children }
     </Box>

@@ -3,6 +3,7 @@ import ContentLayout from '../components/ContentLayout'
 import { SideBar } from '../components/SideBar'
 import { Notification } from '../components/Notification'
 import clientPromise from '../lib/mongodb'
+import RenderView from '../components/RenderView'
 
 import {
   Tab,
@@ -13,6 +14,7 @@ import {
   Button,
   Grid,
   GridItem,
+  AspectRatio,
 } from '@chakra-ui/react'
 
 import axios from 'axios'
@@ -32,33 +34,23 @@ export default function dashboard(users) {
     sx={{ position: '-webkit-sticky', position: 'sticky', top: '0', }} */}
       <Navbar />
       <main>
-        { /** El is lazy nos permite solo */}
+        {/** El is lazy nos permite solo */}
         <Tabs isLazy>
           <TabList>
+          <Tab>{tabOneName}</Tab>
             <Tab>{tabOneName}</Tab>
             <Tab>{tabTwoName}</Tab>
             <Tab>{tabThreeName}</Tab>
             <Tab>{tabFourName}</Tab>
-
           </TabList>
 
-          <TabPanels height={'100%'}>
-
-
-            <TabPanel height={'100vh'} p={0}>
-
+          <TabPanels height={"100%"} overflowY={"hidden"}>
+            <TabPanel height={"89vh"} p={0}>
               <ContentLayout>
-
-                <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
-                  <GridItem colSpan={3}>
+                <Grid templateColumns={"repeat(24, 1fr)"} gap={1}>
+                  <GridItem colSpan={7}>
                     <SideBar name={tabOneName}>
                       {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
-                      <Notification status={'CRITICO'} time={'3:45:23'} />
-                      <Notification status={'Tubería dañada'} time={'3:45:23'} />
-                      <Notification status={'Tubería dañada'} time={'3:45:23'} />
-                      <Notification status={'CRITICO'} time={'3:45:23'} />
-                      <Notification status={'Tubería dañada'} time={'3:45:23'} />
-
                       {
                          users?.users?.map((item, keyVal) => {
                           return (
@@ -72,36 +64,21 @@ export default function dashboard(users) {
                   </GridItem>
 
                   {/** Cuerpo de la vista */}
-                  <GridItem colSpan={9}>
-                    <Button>hola</Button>
-
-
-
+                  <GridItem colSpan={17}>
+                    <RenderView />
                   </GridItem>
-
                 </Grid>
               </ContentLayout>
-
             </TabPanel>
 
-            <TabPanel>
+            <TabPanel></TabPanel>
 
-            </TabPanel>
+            <TabPanel>hola1</TabPanel>
 
-            <TabPanel>
-              hola1
-            </TabPanel>
-
-            <TabPanel>
-              hola1
-            </TabPanel>
-
+            <TabPanel>hola1</TabPanel>
           </TabPanels>
-
         </Tabs>
       </main>
-
-
     </>
   )
 }
