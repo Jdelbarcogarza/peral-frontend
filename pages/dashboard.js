@@ -1,20 +1,85 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { Navbar } from '../components/Navbar'
+import ContentLayout from '../components/ContentLayout'
+import { SideBar } from '../components/SideBar'
+import { Notification } from '../components/Notification'
 
-import Layout  from '../components/Layout'
 
 import {
-
+  Tab,
+  TabList,
+  TabPanels,
+  TabPanel,
+  Tabs,
   Button,
-  Box
-
+  Grid,
+  GridItem,
 } from '@chakra-ui/react'
 
-export default function Dashboard() {
+export default function dashboard() {
+
+  const tabOneName = 'Aguas Negras'
+  const tabTwoName = 'Aguas Grises'
+  const tabThreeName = 'Agua Potable'
+  const tabFourName = 'Tubería contra incendios'
+
+
   return (
-    <Layout>
-    <h1>hola</h1>
-   </Layout>
+    <>
+      {/* 
+    para hacer el navbar sticky
+    sx={{ position: '-webkit-sticky', position: 'sticky', top: '0', }} */}
+      <Navbar />
+      <main>
+        { /** El is lazy nos permite solo */}
+        <Tabs isLazy>
+          <TabList>
+            <Tab>{tabOneName}</Tab>
+            <Tab>{tabTwoName}</Tab>
+            <Tab>{tabThreeName}</Tab>
+            <Tab>{tabFourName}</Tab>
+
+          </TabList>
+
+          <TabPanels height={'100%'}>
+
+
+            <TabPanel height={'100vh'} p={1}>
+
+              <ContentLayout>
+
+                <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
+                  <GridItem colSpan={3}>
+                    <SideBar name={tabOneName}/>
+                  </GridItem>
+
+                {/** Cuerpo de la vista */}
+                <GridItem colSpan={9}>
+                  <Button>hola</Button>
+                </GridItem>
+
+                </Grid>
+              </ContentLayout>
+
+            </TabPanel>
+
+            <TabPanel>
+
+            </TabPanel>
+
+            <TabPanel>
+              hola1
+            </TabPanel>
+
+            <TabPanel>
+              hola1
+            </TabPanel>
+
+          </TabPanels>
+
+        </Tabs>
+      </main>
+
+
+    </>
   )
 }
