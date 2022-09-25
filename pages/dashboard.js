@@ -43,13 +43,17 @@ export default function dashboard() {
           <TabPanels height={'100%'}>
 
 
-            <TabPanel height={'100vh'} p={1}>
+            <TabPanel height={'100vh'} p={0}>
 
               <ContentLayout>
 
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
                   <GridItem colSpan={3}>
-                    <SideBar name={tabOneName}/>
+                    <SideBar name={tabOneName}>
+                    {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+
+                    </SideBar>
                   </GridItem>
 
                 {/** Cuerpo de la vista */}
