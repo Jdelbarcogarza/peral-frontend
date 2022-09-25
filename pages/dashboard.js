@@ -59,6 +59,15 @@ export default function dashboard(users) {
                       <Notification status={'CRITICO'} time={'3:45:23'} />
                       <Notification status={'Tubería dañada'} time={'3:45:23'} />
 
+                      {
+                         users?.users?.map((item, keyVal) => {
+                          return (
+                            <Notification key={keyVal} status={item.state} time={item.timeStamp} />
+                          )
+                        })
+                      }
+
+
                     </SideBar>
                   </GridItem>
 
@@ -67,7 +76,6 @@ export default function dashboard(users) {
                     <Button>hola</Button>
 
 
-                  { console.log(users)}
 
                   </GridItem>
 
@@ -107,10 +115,11 @@ export async function getServerSideProps() {
     })
 
     const usersRes = await axiosInstance.get('/api/mongoReq')
-    console.log('matter',usersRes.data.users[0])
+    console.log('matter', usersRes.data.users[0])
 
     // le da estructura al prop que se manda al frontend
-    let users = usersRes.data.users[0]
+    let users = usersRes.data.users[0].puntos
+    console.log('hola',users)
 
     return {
       props: { users }
