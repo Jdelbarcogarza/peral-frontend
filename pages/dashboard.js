@@ -51,7 +51,19 @@ export default function dashboard() {
                   <GridItem colSpan={3}>
                     <SideBar name={tabOneName}>
                     {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      <Notification color={'critical'} status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification color={'warning'} status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Deterioro'} time={'3:45:23'}/>
+                      <Notification status={'Deterioro'} time={'3:45:23'}/>
+                      <Notification status={'Deterioro'} time={'3:45:23'}/>
                       <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
+
 
                     </SideBar>
                   </GridItem>
