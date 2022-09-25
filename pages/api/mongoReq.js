@@ -9,6 +9,6 @@ export default async function handler(req, res){
 
     const db = client.db(DB_NAME)
 
-    let users = await db.collection("test").find({}).toArray()
+    let users = await db.collection("points").find({}).toArray()
     res.status(200).json({users})
 }
