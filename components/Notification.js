@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 
 import WarningIcon from '@mui/icons-material/Warning';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 export const Notification = ({ color, time, status }) => {
   return (
