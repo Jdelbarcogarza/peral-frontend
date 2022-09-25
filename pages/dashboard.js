@@ -57,7 +57,7 @@ export default function dashboard(users) {
                           return (
                             <Box key={keyVal} width={'100%'}>
                             <Notification  status={item.state} time={item.timeStamp} />
-                            <Divider width={'100%'}/>
+                            
                             </Box>
                           )
                         })

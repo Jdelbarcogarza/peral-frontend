@@ -5,7 +5,8 @@ import {
   Center,
   VStack,
   Text,
-  Spacer
+  Spacer,
+  Divider
 } from '@chakra-ui/react'
 
 import WarningIcon from '@mui/icons-material/Warning';
@@ -15,10 +16,10 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 export const Notification = ({ color, time, status }) => {
   return (
     <>
+      <Divider/>
       <Box bgColor={'white'} width={'100%'} padding={1}>
       
         <Center justifyContent={'space-around'}>
-    
           {
 
             status === 'CRITICO' ? <WarningIcon  sx={{ color: 'red', fontSize: '48px' }} />
