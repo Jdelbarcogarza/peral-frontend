@@ -35,17 +35,18 @@ export default function dashboard() {
         {/** El is lazy nos permite solo */}
         <Tabs isLazy>
           <TabList>
+          <Tab>{tabOneName}</Tab>
             <Tab>{tabOneName}</Tab>
             <Tab>{tabTwoName}</Tab>
             <Tab>{tabThreeName}</Tab>
             <Tab>{tabFourName}</Tab>
           </TabList>
 
-          <TabPanels height={"100%"}>
-            <TabPanel height={"100vh"} p={0}>
+          <TabPanels height={"100%"} overflowY={"hidden"}>
+            <TabPanel height={"89vh"} p={0}>
               <ContentLayout>
-                <Grid templateColumns={"repeat(12, 1fr)"} gap={2}>
-                  <GridItem colSpan={4}>
+                <Grid templateColumns={"repeat(24, 1fr)"} gap={1}>
+                  <GridItem colSpan={7}>
                     <SideBar name={tabOneName}>
                       {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
                       <Notification
@@ -93,7 +94,7 @@ export default function dashboard() {
                   </GridItem>
 
                   {/** Cuerpo de la vista */}
-                  <GridItem colSpan={8}>
+                  <GridItem colSpan={17}>
                     <RenderView />
                   </GridItem>
                 </Grid>

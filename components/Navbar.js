@@ -10,7 +10,7 @@ import React from 'react'
 export const Navbar = () => {
   return (
     <HStack bgColor={'blue.700'} px={4}>
-    <Text fontSize={'5xl'} color={'white'}>
+    <Text fontSize={'3xl'} color={'white'}>
       Peral
     </Text>
     </HStack>
