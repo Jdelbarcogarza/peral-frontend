@@ -17,8 +17,9 @@ export const Notification = ({ color, time, status }) => {
       <Box bgColor={'white'} width={'100%'} padding={5}>
         <Center justifyContent={'center'}>
           {
-            status === 'Tubería dañada' ?  <WarningIcon  sx={{ color: 'red', fontSize: '48px' }} /> 
-            : <WarningAmberIcon sx={{color: '#ED8936', fontSize: '48px'}}/>
+
+            status === 'CRITICO' ? <WarningIcon  sx={{ color: 'red', fontSize: '48px' }} />
+            : <WarningAmberIcon sx={{color: '#ED8936', fontSize: '48px'}}/> 
           }
           <Spacer/>
           <VStack alignItems={'start'}>
