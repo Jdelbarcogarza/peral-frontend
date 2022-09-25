@@ -16,7 +16,7 @@ export const SideBar = ({ children, name }) => {
                     <Text as={'b'} fontSize={'2xl'}>
                         {name}
                     </Text>
-                    <Divider my={2} />
+                    
                 </Box>
                 <VStack alignItems={'start'}>
 
