@@ -2,7 +2,7 @@ import { Navbar } from '../components/Navbar'
 import ContentLayout from '../components/ContentLayout'
 import { SideBar } from '../components/SideBar'
 import { Notification } from '../components/Notification'
-
+import RenderView from '../components/RenderView'
 
 import {
   Tab,
@@ -13,7 +13,9 @@ import {
   Button,
   Grid,
   GridItem,
+  AspectRatio,
 } from '@chakra-ui/react'
+
 
 export default function dashboard() {
 
@@ -30,72 +32,82 @@ export default function dashboard() {
     sx={{ position: '-webkit-sticky', position: 'sticky', top: '0', }} */}
       <Navbar />
       <main>
-        { /** El is lazy nos permite solo */}
+        {/** El is lazy nos permite solo */}
         <Tabs isLazy>
           <TabList>
             <Tab>{tabOneName}</Tab>
             <Tab>{tabTwoName}</Tab>
             <Tab>{tabThreeName}</Tab>
             <Tab>{tabFourName}</Tab>
-
           </TabList>
 
-          <TabPanels height={'100%'}>
-
-
-            <TabPanel height={'100vh'} p={0}>
-
+          <TabPanels height={"100%"}>
+            <TabPanel height={"100vh"} p={0}>
               <ContentLayout>
-
-                <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
-                  <GridItem colSpan={3}>
+                <Grid templateColumns={"repeat(12, 1fr)"} gap={2}>
+                  <GridItem colSpan={4}>
                     <SideBar name={tabOneName}>
-                    {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
-                      <Notification color={'critical'} status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification color={'warning'} status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Deterioro'} time={'3:45:23'}/>
-                      <Notification status={'Deterioro'} time={'3:45:23'}/>
-                      <Notification status={'Deterioro'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-
-
+                      {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      <Notification
+                        color={"critical"}
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        color={"warning"}
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification status={"Deterioro"} time={"3:45:23"} />
+                      <Notification status={"Deterioro"} time={"3:45:23"} />
+                      <Notification status={"Deterioro"} time={"3:45:23"} />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
+                      <Notification
+                        status={"Tubería dañada"}
+                        time={"3:45:23"}
+                      />
                     </SideBar>
                   </GridItem>
 
-                {/** Cuerpo de la vista */}
-                <GridItem colSpan={9}>
-                  <Button>hola</Button>
-                </GridItem>
-
+                  {/** Cuerpo de la vista */}
+                  <GridItem colSpan={8}>
+                    <RenderView />
+                  </GridItem>
                 </Grid>
               </ContentLayout>
-
             </TabPanel>
 
-            <TabPanel>
+            <TabPanel></TabPanel>
 
-            </TabPanel>
+            <TabPanel>hola1</TabPanel>
 
-            <TabPanel>
-              hola1
-            </TabPanel>
-
-            <TabPanel>
-              hola1
-            </TabPanel>
-
+            <TabPanel>hola1</TabPanel>
           </TabPanels>
-
         </Tabs>
       </main>
-
-
     </>
-  )
+  );
 }
