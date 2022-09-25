@@ -14,9 +14,12 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 export const Notification = ({ color, time, status }) => {
   return (
     <>
-      <Box bgColor={'white'} width={'100%'} padding={5  }>
+      <Box bgColor={'white'} width={'100%'} padding={5}>
         <Center justifyContent={'center'}>
-          <WarningIcon sx={{ color: 'red', fontSize: '48px' }} />
+          {
+            status === 'Tubería dañada' ?  <WarningIcon  sx={{ color: 'red', fontSize: '48px' }} /> 
+            : <WarningAmberIcon sx={{color: '#ED8936', fontSize: '48px'}}/>
+          }
           <Spacer/>
           <VStack alignItems={'start'}>
             <Text as='b' fontSize={'lg'}>{status}</Text>
