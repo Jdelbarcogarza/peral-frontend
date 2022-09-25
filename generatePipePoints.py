@@ -88,7 +88,7 @@ puntos=[]
 radio =5
 largo = 10
 defineCenter(radio, largo)
-#plt.show()
+plt.show()
 
 
 jsonObject = json.dumps(puntos, indent=4, default=str)
