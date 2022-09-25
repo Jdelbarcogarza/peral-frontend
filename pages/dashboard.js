@@ -2,7 +2,7 @@ import { Navbar } from '../components/Navbar'
 import ContentLayout from '../components/ContentLayout'
 import { SideBar } from '../components/SideBar'
 import { Notification } from '../components/Notification'
-
+import clientPromise from '../lib/mongodb'
 
 import {
   Tab,
@@ -15,7 +15,9 @@ import {
   GridItem,
 } from '@chakra-ui/react'
 
-export default function dashboard() {
+import axios from 'axios'
+
+export default function dashboard(users) {
 
   const tabOneName = 'Aguas Negras'
   const tabTwoName = 'Aguas Grises'
@@ -50,22 +52,24 @@ export default function dashboard() {
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
                   <GridItem colSpan={3}>
                     <SideBar name={tabOneName}>
-                    {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
-                      <Notification status={'CRITICO'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      <Notification status={'CRITICO'} time={'3:45:23'}/>
-                      <Notification status={'Tubería dañada'} time={'3:45:23'}/>
-                      
-
+                      {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      <Notification status={'CRITICO'} time={'3:45:23'} />
+                      <Notification status={'Tubería dañada'} time={'3:45:23'} />
+                      <Notification status={'Tubería dañada'} time={'3:45:23'} />
+                      <Notification status={'CRITICO'} time={'3:45:23'} />
+                      <Notification status={'Tubería dañada'} time={'3:45:23'} />
 
                     </SideBar>
                   </GridItem>
 
-                {/** Cuerpo de la vista */}
-                <GridItem colSpan={9}>
-                  <Button>hola</Button>
-                </GridItem>
+                  {/** Cuerpo de la vista */}
+                  <GridItem colSpan={9}>
+                    <Button>hola</Button>
+
+
+                  { console.log(users)}
+
+                  </GridItem>
 
                 </Grid>
               </ContentLayout>
@@ -92,4 +96,30 @@ export default function dashboard() {
 
     </>
   )
+}
+
+export async function getServerSideProps() {
+  try {
+    await clientPromise
+
+    const axiosInstance = axios.create({
+      baseURL: process.env.BASE_URL
+    })
+
+    const usersRes = await axiosInstance.get('/api/mongoReq')
+    console.log('matter',usersRes.data.users[0])
+
+    // le da estructura al prop que se manda al frontend
+    let users = usersRes.data.users[0]
+
+    return {
+      props: { users }
+    }
+
+
+  } catch (e) {
+    console.error(e)
+  } return {
+    props: { error: false }
+  }
 }
