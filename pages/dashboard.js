@@ -14,7 +14,8 @@ import {
   Button,
   Grid,
   GridItem,
-  AspectRatio,
+  Divider,
+  Box
 } from '@chakra-ui/react'
 
 import axios from 'axios'
@@ -48,13 +49,16 @@ export default function dashboard(users) {
             <TabPanel height={"89vh"} p={0}>
               <ContentLayout>
                 <Grid templateColumns={"repeat(24, 1fr)"} gap={1}>
-                  <GridItem colSpan={7}>
+                  <GridItem colSpan={5}>
                     <SideBar name={tabOneName}>
                       {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
                       {
                          users?.users?.map((item, keyVal) => {
                           return (
-                            <Notification key={keyVal} status={item.state} time={item.timeStamp} />
+                            <Box key={keyVal} width={'100%'}>
+                            <Notification  status={item.state} time={item.timeStamp} />
+                            <Divider width={'100%'}/>
+                            </Box>
                           )
                         })
                       }
@@ -64,7 +68,7 @@ export default function dashboard(users) {
                   </GridItem>
 
                   {/** Cuerpo de la vista */}
-                  <GridItem colSpan={17}>
+                  <GridItem colSpan={19}>
                     <RenderView />
                   </GridItem>
                 </Grid>
