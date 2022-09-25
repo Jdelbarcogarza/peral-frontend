@@ -20,7 +20,7 @@ import {
 
 import axios from 'axios'
 
-export default function dashboard(users) {
+export default function dashboard({users, aguasGrises, aguasPotables, aguasIncendios}) {
 
   const tabOneName = 'Aguas Negras'
   const tabTwoName = 'Aguas Grises'
@@ -36,10 +36,9 @@ export default function dashboard(users) {
       <Navbar />
       <main>
         {/** El is lazy nos permite solo */}
-        <Tabs isLazy>
+        <Tabs>
           <TabList>
           <Tab>{tabOneName}</Tab>
-            <Tab>{tabOneName}</Tab>
             <Tab>{tabTwoName}</Tab>
             <Tab>{tabThreeName}</Tab>
             <Tab>{tabFourName}</Tab>
@@ -53,7 +52,7 @@ export default function dashboard(users) {
                     <SideBar name={tabOneName}>
                       {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
                       {
-                         users?.users?.map((item, keyVal) => {
+                         users?.map((item, keyVal) => {
                           return (
                             <Box key={keyVal} width={'100%'}>
                             <Notification  status={item.state} time={item.timeStamp} />
@@ -75,11 +74,97 @@ export default function dashboard(users) {
               </ContentLayout>
             </TabPanel>
 
-            <TabPanel></TabPanel>
+            <TabPanel height={"89vh"} p={0}>
+            <ContentLayout>
+                <Grid templateColumns={"repeat(24, 1fr)"} gap={1}>
+                  <GridItem colSpan={5}>
+                    <SideBar name={tabTwoName}>
+                      {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      {
+                         aguasGrises?.map((item, keyVal) => {
+                          return (
+                            <Box key={keyVal} width={'100%'}>
+                            <Notification  status={item.state} time={item.timeStamp} />
+                            
+                            </Box>
+                          )
+                        })
+                      }
 
-            <TabPanel>hola1</TabPanel>
 
-            <TabPanel>hola1</TabPanel>
+                    </SideBar>
+                  </GridItem>
+
+                  {/** Cuerpo de la vista */}
+                  <GridItem colSpan={19}>
+                    <RenderView />
+                  </GridItem>
+                </Grid>
+              </ContentLayout>
+            </TabPanel>
+
+
+            <TabPanel height={"89vh"} p={0}>
+
+            <ContentLayout>
+                <Grid templateColumns={"repeat(24, 1fr)"} gap={1}>
+                  <GridItem colSpan={5}>
+                    <SideBar name={tabTwoName}>
+                      {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      
+                      {
+                         aguasPotables?.map((item, keyVal) => {
+                          return (
+                            <Box key={keyVal} width={'100%'}>
+                            <Notification  status={item.state} time={item.timeStamp} />
+                            
+                            </Box>
+                          )
+                        })
+                      }
+
+
+                    </SideBar>
+                  </GridItem>
+
+                  {/** Cuerpo de la vista */}
+                  <GridItem colSpan={19}>
+                    <RenderView />
+                  </GridItem>
+                </Grid>
+              </ContentLayout>
+
+            </TabPanel>
+
+            <TabPanel height={"89vh"} p={0}>
+            <ContentLayout>
+                <Grid templateColumns={"repeat(24, 1fr)"} gap={1}>
+                  <GridItem colSpan={5}>
+                    <SideBar name={tabTwoName}>
+                      {/** TODO: Aquí va la lógica de negocio para poner todas las notificaciones */}
+                      
+                      {
+                         aguasIncendios?.map((item, keyVal) => {
+                          return (
+                            <Box key={keyVal} width={'100%'}>
+                            <Notification  status={item.state} time={item.timeStamp} />
+                            
+                            </Box>
+                          )
+                        })
+                      }
+
+
+                    </SideBar>
+                  </GridItem>
+
+                  {/** Cuerpo de la vista */}
+                  <GridItem colSpan={19}>
+                    <RenderView />
+                  </GridItem>
+                </Grid>
+              </ContentLayout>
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </main>
@@ -95,15 +180,28 @@ export async function getServerSideProps() {
       baseURL: process.env.BASE_URL
     })
 
-    const usersRes = await axiosInstance.get('/api/mongoReq')
-    console.log('matter', usersRes.data.users[0])
-
+    const usersRes = await axiosInstance.get('/api/aguasNegras')
     // le da estructura al prop que se manda al frontend
     let users = usersRes.data.users[0].puntos
-    console.log('hola',users)
+//    console.log('matter', usersRes.data.users[0])
+
+
+    const aguasGrisesRes = await axiosInstance.get('/api/aguasGrises')
+    let aguasGrises = aguasGrisesRes.data.users[0].puntos
+    console.log('gris', aguasGrisesRes.data.users[0].puntos)
+
+
+    const aguasPotablesRes = await axiosInstance.get('/api/aguasPotables')
+    let aguasPotables = aguasPotablesRes.data.users[0].puntos
+    console.log('gris', aguasPotablesRes.data.users[0].puntos)
+
+
+    const aguasIncendiosRes = await axiosInstance.get('/api/aguasIncendios')
+    let aguasIncendios = aguasIncendiosRes.data.users[0].puntos
+    console.log('gris', aguasIncendiosRes.data.users[0].puntos)
 
     return {
-      props: { users }
+      props: { users, aguasGrises, aguasPotables, aguasIncendios }
     }
 
 
